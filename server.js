@@ -1,19 +1,16 @@
-var express = require('express')
-var http = require('http')
-// var router = require('./routes')
-// var body_parser=require('body-parser')
-
+const express = require('express')
+const http = require('http')
+require('dotenv').config() 
+var port = process.env.PORT
 const app = express()
-    app.use("/",(req,res)=>{
-     res.json("express server")
-})
+
+const router=require('./routes')
+app.use("/",router)
 
 
-// app.use(body_parser.urlencoded({extended:true}));
-// app.use(body_parser.json())
-// app.use("/",router)
 
-var server = http.createServer(app);
-  server.listen(6000,()=>{
-    console.log("server is running in http://localhost:6000");
+const server = http.createServer(app)
+
+server.listen(port,()=>{
+    console.log("App Running in loacalhost:"+port);
 })
